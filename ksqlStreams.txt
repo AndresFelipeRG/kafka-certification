@@ -1,0 +1,9 @@
+//set auto.offset.reset to earlisest
+SET 'auto.offset.reset' = 'earliest';
+//create stream from topic
+CREATE STREAM member_signups (firstname VARCHAR, lastname VARCHAR, email_notifications BOOLEAN) WITH (KAFKA_TOPIC='member_signups', VALUE_FORMAT='DELIMITED');
+//create persistent stream from topic
+CREATE STREAM member_signups_email AS SELECT * FROM member_Signups WHERE email_
+notifications=true;
+//PRINT DATA FROM STREAM SINCE BEGINNING
+PRINT 'MEMBER_SIGNUPS_EMAIL' FROM BEGINNING;
