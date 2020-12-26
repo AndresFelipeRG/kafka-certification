@@ -1,0 +1,8 @@
+//create a persistent streaming query to join 2 streams and output result for a period of 365 days
+//data will be updated as stream of data rolls into output topic
+
+CREATE STREAM member_email_list AS
+SELECT member_signups.firstname, member_signups.lastname,
+member_contact.email FROM member_signups
+INNER JOIN member_contact WITHIN 365 DAYS ON
+member_signups.rowkey= member_contact.rowkey;
